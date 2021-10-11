@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="show" value="0">Show</button>
+    <div id="b"></div>
+    <script>
+        // create 5 buttons and append to DOM
+        // each button should have (i+1) value on it, where i is the index
+        // on click of the button alert the number on the button
+        // use eventListeners ( do not write anything inline )
+        // use only a single event listener
+        function showButton(){
+            const cont = document.createElement("div");
+
+            for ( let i = 0; i < 5; i++ ){
+                const btn = document.createElement("button");
+                btn.value = i+1;
+                btn.textContent = i+1;
+                cont.append(btn);
+            }
+            const a = document.getElementById("b");
+            a.innerHTML = "";
+            a.append(cont);
+        }
+
+        function handleClick(e){
+            if ( e.target.value == 0 ){
+                showButton();
+                return;
+            }
+            alert(`You have click btn ${e.target.value}`)
+        }
+
+        window.addEventListener("load", () => {
+            document.body.addEventListener("click", handleClick);
+        })
+
+    </script>
+</body>
+</html>
