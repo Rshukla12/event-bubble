@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            padding: 1% 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        form {
+            width: 10%;
+            margin: auto;
+        }
+        input {
+            margin-bottom: 5%;
+        }
+        #main > div {
+            width: 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: auto;
+            border: 0.25px solid gray;
+            padding: 10px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" \>
+        <br \>
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="phone" id="phone" \>
+        <br \>
+        <button id="create">Create</button>
+    </form>
+    <div id="main">
+
+    </div>
+    <script>
+        function handleCreateCard(){
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const main = document.getElementById("main");
+            
+            const cont = document.createElement("div");
+            const nameElem = document.createElement("div");
+            const btn = document.createElement("button");
+            const phoneElem = document.createElement("div");
+
+            nameElem.textContent = name;
+            phoneElem.textContent = phone;
+            btn.textContent = "Show";
+
+            btn.className = "displayContact";
+            phoneElem.className = "phone";
+            phoneElem.style.display = "none";
+
+            cont.append( name, btn, phoneElem );
+            main.append( cont );
+        }
+
+        function handleClick(){
+            event.preventDefault()
+            if ( event.target.id == "create" ){
+                handleCreateCard();
+            } else if ( event.target.className == "displayContact" ){
+                const phone = event.target.parentNode.querySelector(".phone");
+                if ( phone.style.display == "none" ){
+                    phone.style.display = "block";
+                } else {
+                    phone.style.display = "none";
+                }
+            }
+        }
+
+        window.addEventListener("load", ( ) => {
+            document.body.addEventListener("click", handleClick);
+        })
+    </script>
+</body>
+</html>
